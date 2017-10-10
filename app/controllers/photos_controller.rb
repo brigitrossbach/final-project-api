@@ -10,12 +10,17 @@ def create
   vision = Google::Cloud::Vision.new
   gcloud = Google::Cloud.new project_id, 'service-account.json'
   storage = gcloud.storage
-  photo = Photo.new(photo_params)
+  base64=params[:image].split(',')[1]
+  photo = Photo.new
   user = User.find(1)
   photo.user = user
   bucket = storage.bucket "flatiron-final-project"
   photo.save
-  new_photo = bucket.create_file(params[:photo][:url], "photos/#{photo.id}")
+  data= Base64.decode64(base64)
+  output_file = Tempfile.new(['image','.jpeg'])
+  output_file.binmode
+  output_file.puts data
+  new_photo = bucket.create_file(output_file, "photos/#{photo.id}")
   photo.url = new_photo.media_url
   image = vision.image("gs://flatiron-final-project/photos/#{photo.id}")
   photo.save
@@ -29,8 +34,9 @@ end
 
 private
 
+
 def photo_params
-  params.require(:photo).permit(:user_id, :url, :filter)
+  params.permit(:user_id, :url, :filter)
 end
 
 end
