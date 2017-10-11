@@ -4,6 +4,11 @@ require 'google/cloud/storage'
 
 class PhotosController < ApplicationController
 
+  def index
+    photos = Photo.all
+    render json: photos
+  end
+
 def create
   # key_file= '/Users/Brigit/Documents/Flatiron Final Project-10785a8cd05e.json'
   project_id = 'lunar-marker-182415'
@@ -25,9 +30,9 @@ def create
   image = vision.image("gs://flatiron-final-project/photos/#{photo.id}")
   photo.save
   annotation = vision.annotate(image, labels: true)
-  tag1 = Tag.create(tag: annotation.labels[0].description, photo_id: photo.id)
-  tag2 = Tag.create(tag: annotation.labels[1].description, photo_id: photo.id)
-  tag3 = Tag.create(tag: annotation.labels[2].description, photo_id: photo.id)
+  tag1 = Tag.create(tag: annotation.labels[0].description.split(' ').join('-'), photo_id: photo.id)
+  tag2 = Tag.create(tag: annotation.labels[1].description.split(' ').join('-'), photo_id: photo.id)
+  tag3 = Tag.create(tag: annotation.labels[2].description.split(' ').join('-'), photo_id: photo.id)
   render json: photo
 end
 
