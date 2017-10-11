@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
 resources :users, only: [:index, :create, :show, :destroy]
 resources :photos, only: [:index, :create, :show, :destroy]
+post '/login', to: 'auth#create'
 
 end

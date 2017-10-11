@@ -17,6 +17,7 @@ def create
   storage = gcloud.storage
   base64=params[:image].split(',')[1]
   photo = Photo.new
+  photo.caption=params[:caption]
   user = User.find(1)
   photo.user = user
   bucket = storage.bucket "flatiron-final-project"

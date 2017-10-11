@@ -11,8 +11,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    render json: user
+    user = User.new(user_params)
+    byebug
+    if user.save
+      token=encode_token({user_id: user.id})
+    render json: {user: user, jwt: token}
+  else
+  end
   end
 
   def destroy
@@ -23,7 +28,7 @@ class UsersController < ApplicationController
 private
 
 def user_params
-  params.require(:user).permit(:username, :password, :first_name, :last_name, :email)
+  params.permit(:username, :password, :first_name, :last_name, :email)
 end
 
 end
