@@ -18,7 +18,7 @@ def create
   base64=params[:image].split(',')[1]
   photo = Photo.new
   photo.caption=params[:caption]
-  user = User.find(1)
+  user = User.find(decoded_token[0]['user_id'])
   photo.user = user
   bucket = storage.bucket "flatiron-final-project"
   photo.save

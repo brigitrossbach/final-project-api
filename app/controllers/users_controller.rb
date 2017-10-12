@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    users = User.all
-    render json: users
+    if decoded_token
+      user = User.find(decoded_token[0]['user_id'])
+    else
+      user = User.all
+    end
+    render json: user
   end
 
   def show
