@@ -1,5 +1,8 @@
 class PhotoSerializer < ActiveModel::Serializer
-  attributes :id, :url, :tags, :caption, :user_id, :user
-  has_many :tags
-  belongs_to :user
+  attributes :id, :url, :caption, :user_id, :username, :tags
+
+  def username
+    object.user.username
+  end
+
 end

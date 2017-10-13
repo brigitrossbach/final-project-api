@@ -6,17 +6,16 @@ class UsersController < ApplicationController
       homepage_photos = user.all_following.map do |user|
         user.photos
       end
-      user_photos = user.photos
     else
       user = User.all
     end
-    render json: {user: user.as_json(include_hash), homepage_photos: homepage_photos.as_json(include_tags), photos: user_photos.as_json(include_tags)}
+    render json: user
     #fix what this gives to the front end. Needs to return tags, user, etc with the photos somehow
   end
 
   def show
-    user = User.find(params[:id])
-    render json: user.photos
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   def create

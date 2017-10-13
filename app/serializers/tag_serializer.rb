@@ -1,3 +1,4 @@
 class TagSerializer < ActiveModel::Serializer
-  attributes :tag
+  attributes :tag, :id
+  belongs_to :photo
 end
