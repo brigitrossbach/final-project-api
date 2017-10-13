@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    if decoded_token
+    if decoded_token && decoded_token[0]['user_id'] != nil
       user = User.find(decoded_token[0]['user_id'])
       homepage_photos = user.all_following.map do |user|
         user.photos
