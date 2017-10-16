@@ -3,6 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :photos
   has_many :homepage_photos
+  has_many :boards
 
 
   def homepage_photos
