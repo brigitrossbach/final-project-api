@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 resources :users, only: [:index, :create, :show, :destroy]
 resources :photos, only: [:index, :create, :show, :destroy]
+resources :comments, only: [:index, :create, :show, :destroy]
 post '/login', to: 'auth#create'
 post '/follow', to: 'follow#create'
 post '/unfollow', to: 'follow#destroy'
