@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       user = User.all
     end
     render json: user
-    #fix what this gives to the front end. Needs to return tags, user, etc with the photos somehow
   end
 
   def show
