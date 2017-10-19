@@ -10,7 +10,7 @@ class UserSerializer < ActiveModel::Serializer
     userIds = object.all_following.map do |user|
       user.id
     end
-    photos = Photo.where(user_id: userIds)
+    photos = Photo.where(user_id: userIds).reverse
     return photos
   end
 

@@ -10,5 +10,6 @@ post '/addToBoard', to: 'photo_board#create'
 post '/login', to: 'auth#create'
 post '/follow', to: 'follow#create'
 post '/unfollow', to: 'follow#destroy'
+mount ActionCable.server => '/cable'
 
 end
