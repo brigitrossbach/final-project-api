@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
       photos = Photo.all
       comment = Comment.new(comment: params[:comment], photo_id: photo.id, user_id: user.id)
     comment.save
-    render json: photos
+    render json: photo
   end
 
 

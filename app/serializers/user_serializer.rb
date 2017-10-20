@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :first_name, :last_name, :followers, :all_following
+  attributes :id, :username, :email, :first_name, :last_name, :follower_count, :following_count, :followers, :all_following
 
   has_many :photos
   has_many :homepage_photos
@@ -12,6 +12,14 @@ class UserSerializer < ActiveModel::Serializer
     end
     photos = Photo.where(user_id: userIds).reverse
     return photos
+  end
+
+  def follower_count
+    object.followers.count
+  end
+
+  def following_count
+    object.all_following.count
   end
 
 end
