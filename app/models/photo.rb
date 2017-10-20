@@ -5,4 +5,5 @@ class Photo < ApplicationRecord
   has_many :likes
   has_many :photo_boards
   has_many :boards, through: :photo_boards
+  paginates_per 12
 end

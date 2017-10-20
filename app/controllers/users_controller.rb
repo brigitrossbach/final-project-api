@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   def index
     if decoded_token && decoded_token[0]['user_id'] != nil
       user = User.find(decoded_token[0]['user_id'])
-      homepage_photos = user.all_following.map do |user|
-        user.photos
-      end
     else
       user = User.all
     end
@@ -13,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:username])
     render json: @user
   end
 

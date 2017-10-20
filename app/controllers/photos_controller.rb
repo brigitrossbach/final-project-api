@@ -5,8 +5,14 @@ require 'google/cloud/storage'
 class PhotosController < ApplicationController
 
   def index
-    photos = Photo.all
+    count= params[:page]
+    photos = Photo.page(count).per(12)
     render json: photos
+  end
+
+  def show
+    photo = Photo.find(params[:id])
+    render json: photo
   end
 
 def create
