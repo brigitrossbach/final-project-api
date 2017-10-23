@@ -9,6 +9,12 @@ class CommentsController < ApplicationController
     render json: photo
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    photo = comment.photo
+    comment.destroy
+    render json: photo
+  end
 
 
 end
