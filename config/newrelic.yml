@@ -3,7 +3,7 @@
 # .NET, PHP, Python and Node applications with deep visibility and low
 # overhead.  For more information, visit www.newrelic.com.
 #
-# Generated October 20, 2017
+# Generated October 23, 2017
 #
 # This configuration file is custom generated for N/A_3215
 #
@@ -31,10 +31,7 @@ common: &default_settings
 development:
   <<: *default_settings
   app_name: My Application (Development)
-monitor_mode: true
-NEW_RELIC_TRANSACTION_TRACER_TRANSACTION_THRESHOLD: 0.01
-NEW_RELIC_TRANSACTION_TRACER_EXPLAIN_THRESHOLD: 0.01
-NEW_RELIC_TRANSACTION_TRACER_STACK_TRACE_THRESHOLD: 0.01
+  monitor_mode: true
 
 test:
   <<: *default_settings
@@ -47,7 +44,3 @@ staging:
 
 production:
   <<: *default_settings
-
-  development:
- <<: *default_settings
-monitor_mode: true

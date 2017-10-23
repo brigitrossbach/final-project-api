@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include NewRelic::Agent::Instrumentation::ControllerInstrumentation
 
   jwt_secret = '5ElS49SXm9DlqG9K9tfkgu9hO38XskmbKstF3uqt'
 
