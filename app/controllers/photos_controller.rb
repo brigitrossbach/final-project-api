@@ -15,8 +15,21 @@ class PhotosController < ApplicationController
     render json: photo
   end
 
+  def search
+    photos= []
+    allPhotos = Photo.all
+    allPhotos.map do |photo|
+      photo.tags.each do |tag|
+        if tag.tag.include? (params[:term])
+          photos.push(tag.photo)
+        end
+      end
+    end
+    photos = photos.uniq
+    render json: photos
+  end
+
 def create
-  # key_file= '/Users/Brigit/Documents/Flatiron Final Project-10785a8cd05e.json'
   project_id = 'lunar-marker-182415'
   vision = Google::Cloud::Vision.new
   gcloud = Google::Cloud.new project_id, 'service-account.json'

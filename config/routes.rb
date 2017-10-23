@@ -12,5 +12,6 @@ post '/follow', to: 'follow#create'
 post '/unfollow', to: 'follow#destroy'
 get '/getuser', to: 'users#show'
 mount ActionCable.server => '/cable'
+get '/search', to: 'photos#search'
 
 end
