@@ -37,11 +37,11 @@ class UsersController < ApplicationController
 private
 
 def user_params
-  params.permit(:username, :password, :first_name, :last_name, :email)
+  params.permit(:username, :password, :first_name, :last_name, :email, :bio)
 end
 
 def update_params
-  params.require(:user).permit(:username, :first_name, :last_name, :email)
+  params.require(:user).permit(:username, :first_name, :last_name, :email, :bio)
 end
 
 def include_hash
