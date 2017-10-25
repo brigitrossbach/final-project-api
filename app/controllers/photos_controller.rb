@@ -60,8 +60,8 @@ end
   def destroy
     photo = Photo.find(params[:id])
     user = photo.user
-    photos = user.photos
     photo.destroy
+    photos = user.photos
     render json: photos
   end
 
