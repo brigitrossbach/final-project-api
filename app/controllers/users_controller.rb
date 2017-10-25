@@ -23,6 +23,12 @@ class UsersController < ApplicationController
   end
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update(update_params)
+    render json: user
+  end
+
   def destroy
     user = User.find(params[:id])
     render json: {}
@@ -32,6 +38,10 @@ private
 
 def user_params
   params.permit(:username, :password, :first_name, :last_name, :email)
+end
+
+def update_params
+  params.require(:user).permit(:username, :first_name, :last_name, :email)
 end
 
 def include_hash
