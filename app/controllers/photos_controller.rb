@@ -57,6 +57,13 @@ def create
   render json: photo
 end
 
+  def destroy
+    photo = Photo.find(params[:id])
+    user = photo.user
+    photos = user.photos
+    photo.destroy
+    render json: photos
+  end
 
 private
 
