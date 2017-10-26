@@ -31,7 +31,8 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    render json: {}
+    photos = user.photos
+    render json: photos
   end
 
 private
